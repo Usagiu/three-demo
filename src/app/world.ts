@@ -1,12 +1,11 @@
-import { createCamera } from '../../components/camera.js';
-import { createCube } from '../../components/cube.js';
-import { createScene } from '../../components/scene.js';
+import { createCamera } from '../../components/camera';
+import { createCube } from '../../components/cube';
+import { createLights } from '../../components/light';
+import { createScene } from '../../components/scene';
 
-import { createRenderer } from '../../system/render.js';
-import { Resizer } from '../../system/Resizer.js';
+import { createRenderer } from '../../system/render';
+import { Resizer } from '../../system/Resizer';
 
-// These variables are module-scoped: we cannot access them
-// from outside the module
 let camera: any;
 let renderer: any;
 let scene: any;
@@ -19,14 +18,24 @@ class World {
     container.append(renderer.domElement);
 
     const cube = createCube();
+    const light = createLights();
 
-    scene.add(cube);
+    scene.add(cube, light);
 
     const resizer = new Resizer(container, camera, renderer);
+
+    // resizer.onResize = () => {
+    //   this.render();
+    // };
   }
 
   render() {
-    renderer.render(scene, camera);
+    const animate = () => {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    };
+    animate();
+    // renderer.render(scene, camera);
   }
 }
 
