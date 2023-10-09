@@ -1,0 +1,23 @@
+.outlet {
+  height: 100vh;
+  position: relative;
+}
+
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.scrollText {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  font-size: 60px;
+  background: transparent;
+  z-index: 10;
+  opacity: 0.1;
+  color: white;
+}
