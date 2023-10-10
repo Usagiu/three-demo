@@ -158,9 +158,11 @@ export default function Home() {
   // }, []);
 
   useEffect(()=>{
-    const container = document.querySelector('#container')
-    const world = new World(container)
-    world.render();
+    const container = document.querySelector('#container');
+
+    const world = new World(container);
+
+    world.start();
   },[])
 
   return (
