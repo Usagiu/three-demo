@@ -1,4 +1,4 @@
-import { BoxGeometry, Mesh, MeshStandardMaterial } from 'three';
+import { BoxGeometry, Mesh, MeshStandardMaterial, MathUtils, SphereGeometry } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const createCube = () => {
@@ -14,7 +14,15 @@ const createCube = () => {
   //     console.error("xx",error);
   //   })
 
-  const geometry = new BoxGeometry(2, 2, 2);
+  const radius = 0.25;
+  const widthSegments = 16;
+  const heightSegments = 16;
+
+  const geometry = new SphereGeometry(
+    radius,
+    widthSegments,
+    heightSegments
+  );
 
   const material = new MeshStandardMaterial({ color: "orchid" });
 
@@ -22,10 +30,12 @@ const createCube = () => {
 
   cube.rotation.set(-0.5, -0.1, 0.8);
 
-  cube.tick = () => {
-    cube.rotation.z += 0.01;
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+  const radiansPerSecond = MathUtils.degToRad(30);
+
+  cube.tick = (delta: any) => {
+    cube.rotation.z += radiansPerSecond * delta
+    cube.rotation.x += radiansPerSecond * delta
+    cube.rotation.y += radiansPerSecond * delta
   };
 
   return cube;

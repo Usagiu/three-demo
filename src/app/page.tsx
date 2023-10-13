@@ -6,6 +6,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { useThree, extend } from 'react-three-fiber';
 import { useGesture } from 'react-use-gesture';
 import { World } from './world';
+import { Button } from 'antd';
 
 export default function Home() {
   const sceneRef = useRef(null);
@@ -157,16 +158,20 @@ export default function Home() {
   //   };
   // }, []);
 
+  const worldRef = useRef(null)
+
   useEffect(()=>{
     const container = document.querySelector('#container');
-
-    const world = new World(container);
-
-    world.start();
+    worldRef.current = new World(container);
+    worldRef.current.start();
   },[])
 
   return (
     <div className={styles.outlet}>
+      <div className={styles.btn}>
+        <Button type="primary" onClick={()=>{worldRef.current.stop()}}>Stop</Button>
+        <Button type="primary" onClick={()=>{worldRef.current.start()}}>Start</Button>
+      </div>
       <div id="container" className={styles.wrap}/>
       <div id='scrollView' className={styles.scrollText}>{"Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!Hello BestReact!"}</div>
     </div>

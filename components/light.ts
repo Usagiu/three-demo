@@ -1,11 +1,18 @@
-import { DirectionalLight, PointLight, Vector3 } from 'three';
+import {
+    AmbientLight,
+    DirectionalLight,
+    HemisphereLight,
+    PointLight,
+    MathUtils 
+} from 'three';
 
 const createLights = () => {
-    const light = new DirectionalLight('white', 8);
+    const ambientLight = new AmbientLight('white', 2);
 
-    light.position.set(10, 10, 30);
-
-    return light;
+    const mainLight = new DirectionalLight('white', 5);
+    mainLight.position.set(10, 10, 10);
+    
+    return { ambientLight, mainLight };
 }
 
 export { createLights };
